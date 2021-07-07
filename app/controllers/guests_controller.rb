@@ -7,6 +7,13 @@ class GuestsController < ApplicationController
 
   #   render json: @guests
   # end
+
+  def index_of_guests
+    @guests = Guest.all
+
+    render json: @guests
+  end
+
   # def index
   #   @table = Table.find(params[:table_id])
   #   @seat = Seat.find(params[:seat_id])
@@ -19,6 +26,8 @@ class GuestsController < ApplicationController
     @guests = Guest.where(seat_id: @seat.id)
     render json: @guests, include: [seat: {include: :table}], status: :ok
   end
+
+  
 
   # GET /guests/1
   def show

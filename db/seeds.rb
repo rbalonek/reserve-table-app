@@ -18,11 +18,11 @@
 # Guest.destroy_all
 
 
-# Table.create(table_number: "1")
-# Table.create(table_number: "2")
-# Table.create(table_number: "3")
-# Table.create(table_number: "4")
-# Table.create(table_number: "5")
+# Table.create(table_number: "1", seat_count:5)
+# Table.create(table_number: "2", seat_count:5)
+# Table.create(table_number: "3", seat_count:5)
+# Table.create(table_number: "4", seat_count:5)
+# Table.create(table_number: "5", seat_count:5)
 
 # Seat.create(seat_number: "1", table_id: 1)
 # Seat.create(seat_number: "2", table_id: 1)

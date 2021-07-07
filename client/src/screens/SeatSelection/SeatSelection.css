@@ -1,0 +1,13 @@
+.seats__container {
+  display: flex;
+  justify-content: space-around;
+}
+.seat-map {
+}
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+  text-align: center;
+}

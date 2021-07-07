@@ -12,6 +12,14 @@ class TablesController < ApplicationController
     render json: @tables, include: :seats, status: :ok
   end
 
+  def guests_at_table
+    @tables = Table.all
+    # render json: @tables, include: :tables , status: :ok
+    # render json: @tables, include: :guests , status: :ok
+    # render json: @tables, include: [seats: {include: :guests}]  , status: :ok
+    render json: @tables, include: :guests   , status: :ok
+  end
+
 
   # GET /tables/1
   def show

@@ -1,0 +1,32 @@
+.home__table-holder {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.table__container {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 400px;
+  width: 300px;
+  margin: 20px;
+}
+.register__btn {
+  background-color: blue;
+  color: antiquewhite;
+  height: 50px;
+}
+.register__full {
+  background-color: red;
+  color: black;
+  height: 50px;
+  margin-top: -20px;
+  position: relative;
+  top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
