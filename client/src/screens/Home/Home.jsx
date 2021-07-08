@@ -13,42 +13,53 @@ export default function Home(props) {
     <div style={{ textAlign: "center" }}>
       <h1>Reserve a Table App</h1>
 
-      <div>
-        <button className="guest-list-button" onClick={goToGuestList}>
-          Guest List Info
-        </button>
-      </div>
-
-      <div className="home__table-holder">
-        {props.tablesWithGuests.map((table) => (
-          <div className="table__container">
-            <h1>Table: {table.table_number}</h1>
-            <p>
-              Seats Left:{" "}
-              <span style={{ color: "red" }}>
-                {table.seat_count - table.guests.length}
-              </span>{" "}
-            </p>
-
-            {table.guests.map((guest) => (
-              <>
-                <p>{guest.name}</p>
-              </>
-            ))}
-
-            {table.guests.length < table.seat_count ? (
-              <button
-                onClick={() => history.push(`/register/${table.table_number}`)}
-                className="register__btn"
-              >
-                Register
-              </button>
-            ) : (
-              <p className="register__full">Table is full</p>
-            )}
+      {props.tablesWithGuests.length ? (
+        <>
+          <div>
+            <button className="guest-list-button" onClick={goToGuestList}>
+              Guest List Info
+            </button>
           </div>
-        ))}
-      </div>
+
+          <div className="home__table-holder">
+            {props.tablesWithGuests.map((table) => (
+              <div className="table__container">
+                <h1>Table: {table.table_number}</h1>
+                <p>
+                  Seats Left:{" "}
+                  <span style={{ color: "red" }}>
+                    {table.seat_count - table.guests.length}
+                  </span>{" "}
+                </p>
+
+                {table.guests.map((guest) => (
+                  <>
+                    <p>{guest.name}</p>
+                  </>
+                ))}
+
+                {table.guests.length < table.seat_count ? (
+                  <button
+                    onClick={() =>
+                      history.push(`/register/${table.table_number}`)
+                    }
+                    className="register__btn"
+                  >
+                    Register
+                  </button>
+                ) : (
+                  <p className="register__full">Table is full</p>
+                )}
+              </div>
+            ))}
+          </div>
+        </>
+      ) : (
+        <>
+          <h1>LOADING...</h1>
+          <p>Waking up database (30-45 seconds)</p>
+        </>
+      )}
     </div>
   );
 }
