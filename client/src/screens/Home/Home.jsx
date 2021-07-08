@@ -14,7 +14,9 @@ export default function Home(props) {
       <h1>Reserve a Table App</h1>
 
       <div>
-        <button onClick={goToGuestList}>View Guest List</button>
+        <button className="guest-list-button" onClick={goToGuestList}>
+          Guest List Info
+        </button>
       </div>
 
       <div className="home__table-holder">

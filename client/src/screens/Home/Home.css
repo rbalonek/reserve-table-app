@@ -30,3 +30,8 @@
   align-items: center;
   justify-content: center;
 }
+.guest-list-button {
+  background-color: green;
+  color: white;
+  padding: 10px;
+}
