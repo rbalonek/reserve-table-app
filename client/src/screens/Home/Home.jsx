@@ -11,15 +11,18 @@ export default function Home(props) {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <h1>Home</h1>
+      <h1>Tables</h1>
       <div className="home__table-holder">
         {props.tablesWithGuests.map((table) => (
           <div className="table__container">
-            <h1>{table.table_number}</h1>
-            <p>Seats Left: </p>
-            <span style={{ color: "red" }}>
-              {table.seat_count - table.guests.length}
-            </span>
+            <h1>Table: {table.table_number}</h1>
+            <p>
+              Seats Left:{" "}
+              <span style={{ color: "red" }}>
+                {table.seat_count - table.guests.length}
+              </span>{" "}
+            </p>
+
             {table.guests.map((guest) => (
               <>
                 <p>{guest.name}</p>

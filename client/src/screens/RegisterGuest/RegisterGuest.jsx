@@ -48,12 +48,12 @@ export default function RegisterGuest(props) {
     fetchSeatsAtTable(id);
   }, [id]);
 
-  console.log("seats", props.seats);
+  // console.log("seats", props.seats);
 
   const getSeatIDs = () => {
     for (let i = 0; i < seats.length; i++) {
       seatsForTable.push(seats[i].id);
-      console.log("ids", seats[i].id);
+      // console.log("ids", seats[i].id);
     }
   };
   getSeatIDs();
@@ -61,7 +61,7 @@ export default function RegisterGuest(props) {
   const takenSeatIDs = () => {
     for (let i = 0; i < props.guests.length; i++) {
       takenSeats.push(props.guests[i].seat_id);
-      console.log("Taken", props.guests[i].seat_id);
+      // console.log("Taken", props.guests[i].seat_id);
     }
   };
   takenSeatIDs();
@@ -69,7 +69,7 @@ export default function RegisterGuest(props) {
   const filteredArray = takenSeats.filter((value) =>
     seatsForTable.includes(value)
   );
-  console.log("filteredArray", filteredArray);
+  // console.log("filteredArray", filteredArray);
 
   // function arrayRemove(arr, value) {
   //   return arr.filter(function (ele) {
@@ -84,12 +84,12 @@ export default function RegisterGuest(props) {
     return !filteredArray.includes(el);
   });
 
-  console.log("removed", SeatsAvailable);
+  // console.log("removed", SeatsAvailable);
 
   return (
-    <div>
+    <div className="register-guest__container">
       <form
-        // className="add-student__form"
+        className="add-guest__form"
         onSubmit={(e) => {
           e.preventDefault();
           props.createSubmit(formData);
