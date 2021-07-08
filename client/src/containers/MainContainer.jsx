@@ -1,23 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import { getAllTables, getAllTablesWithGuests } from "../services/tables.js";
-import { getAllGuests, postGuest } from "../services/guests.js";
-
-// import { getAllSeatsAtTable, getOneSeatAtTable } from "../services/seats.js";
+import { getAllGuests, postGuest, deleteGuest } from "../services/guests.js";
 
 import Home from "../screens/Home/Home";
-// import RegistarTest from "../screens/RegistarTest/RegistarTest.jsx";
 import RegisterGuest from "../screens/RegisterGuest/RegisterGuest.jsx";
-// import SeatSelection from "../screens/SeatSelection/SeatSelection.jsx";
+import GuestList from "../screens/GuestList/GuestList.jsx";
 
 export default function MainContainer() {
   const [tables, setTables] = useState([]);
   const [tablesWithGuests, setTableWithGuests] = useState([]);
   const [guests, setGuests] = useState([]);
-  // const [takenSeats, setTakenSeats] = useState([]);
-
-  const history = useHistory();
 
   useEffect(() => {
     const fetchTables = async () => {
@@ -40,13 +34,13 @@ export default function MainContainer() {
   const createSubmit = async (formData) => {
     const newGuest = await postGuest(formData);
     setGuests((prevState) => [...prevState, newGuest]);
-    alert("Thanks, you've been added!");
-    history.push("/");
-    // window.location.reload();
   };
 
-  // console.log("tables", tables);
-  // console.log("guests", guests);
+  const handleDelete = async (id) => {
+    await deleteGuest(id);
+    setGuests((prevState) => prevState.filter((guest) => guest.ed !== id));
+    window.location.reload();
+  };
 
   return (
     <Switch>
@@ -58,6 +52,16 @@ export default function MainContainer() {
           tablesWithGuests={tablesWithGuests}
         />
       </Route>
+
+      <Route path="/guestlist">
+        <GuestList
+          tables={tables}
+          guests={guests}
+          tablesWithGuests={tablesWithGuests}
+          handleDelete={handleDelete}
+        />
+      </Route>
+
       <Route path="/">
         <Home
           tablesWithGuests={tablesWithGuests}

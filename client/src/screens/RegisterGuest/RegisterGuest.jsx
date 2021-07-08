@@ -63,10 +63,6 @@ export default function RegisterGuest(props) {
     seatsForTable.includes(value)
   );
 
-  // let SeatsAvailable = seatsForTable.filter(function (el) {
-  //   return !filteredArray.includes(el);
-  // });
-
   let SeatsAvailable = seatsForTable.filter(
     (el) => !filteredArray.includes(el)
   );
