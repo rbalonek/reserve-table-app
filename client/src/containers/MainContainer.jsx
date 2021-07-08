@@ -4,10 +4,10 @@ import { Switch, Route, useHistory } from "react-router-dom";
 import { getAllTables, getAllTablesWithGuests } from "../services/tables.js";
 import { getAllGuests, postGuest } from "../services/guests.js";
 
-import { getAllSeatsAtTable, getOneSeatAtTable } from "../services/seats.js";
+// import { getAllSeatsAtTable, getOneSeatAtTable } from "../services/seats.js";
 
 import Home from "../screens/Home/Home";
-import RegistarTest from "../screens/RegistarTest/RegistarTest.jsx";
+// import RegistarTest from "../screens/RegistarTest/RegistarTest.jsx";
 import RegisterGuest from "../screens/RegisterGuest/RegisterGuest.jsx";
 // import SeatSelection from "../screens/SeatSelection/SeatSelection.jsx";
 

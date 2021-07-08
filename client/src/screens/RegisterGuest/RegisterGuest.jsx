@@ -6,7 +6,7 @@ import { getAllSeatsAtTable } from "../../services/seats.js";
 
 export default function RegisterGuest(props) {
   const { id } = useParams();
-  // console.log("TABLE ID",id);
+
   let history = useHistory();
 
   const [formData, setFormData] = useState({
@@ -14,16 +14,13 @@ export default function RegisterGuest(props) {
     email: "",
     phone: "",
     seat_id: "",
-    // table_id: id,
   });
 
   const goBack = () => {
-    // history.push("/");
     history.goBack();
   };
 
   const { name, email, phone, seat_id } = formData;
-  // const createSubmit = props;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,12 +45,9 @@ export default function RegisterGuest(props) {
     fetchSeatsAtTable(id);
   }, [id]);
 
-  // console.log("seats", props.seats);
-
   const getSeatIDs = () => {
     for (let i = 0; i < seats.length; i++) {
       seatsForTable.push(seats[i].id);
-      // console.log("ids", seats[i].id);
     }
   };
   getSeatIDs();
@@ -61,7 +55,6 @@ export default function RegisterGuest(props) {
   const takenSeatIDs = () => {
     for (let i = 0; i < props.guests.length; i++) {
       takenSeats.push(props.guests[i].seat_id);
-      // console.log("Taken", props.guests[i].seat_id);
     }
   };
   takenSeatIDs();
@@ -69,22 +62,14 @@ export default function RegisterGuest(props) {
   const filteredArray = takenSeats.filter((value) =>
     seatsForTable.includes(value)
   );
-  // console.log("filteredArray", filteredArray);
 
-  // function arrayRemove(arr, value) {
-  //   return arr.filter(function (ele) {
-  //     // eslint-disable-next-line eqeqeq
-  //     return ele != value;
-  //   });
-  // }
+  // let SeatsAvailable = seatsForTable.filter(function (el) {
+  //   return !filteredArray.includes(el);
+  // });
 
-  // var SeatsAvailable = arrayRemove(seatsForTable, filteredArray);
-
-  let SeatsAvailable = seatsForTable.filter(function (el) {
-    return !filteredArray.includes(el);
-  });
-
-  // console.log("removed", SeatsAvailable);
+  let SeatsAvailable = seatsForTable.filter(
+    (el) => !filteredArray.includes(el)
+  );
 
   return (
     <div className="register-guest__container">
@@ -164,22 +149,3 @@ export default function RegisterGuest(props) {
     </div>
   );
 }
-// <label>Table: </label>
-//         <input name="table_id" type="number" value={table_id} />
-
-// <select
-//           // className="add-student__sensei-dropdown"
-//           name="seat_id"
-//           value={seat_id}
-//           onChange={handleChange}
-//         >
-//           <option>--</option>
-
-//           {SeatsAvailable.map((seat) => (
-//             <>
-//               <option type="text" value={SeatsAvailable}>
-//                 {seat}
-//               </option>
-//             </>
-//           ))}
-//         </select>
