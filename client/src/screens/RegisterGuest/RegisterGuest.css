@@ -33,4 +33,7 @@
     margin-top: 30px;
     border-radius: 5%;
   }
+  .register-guest__container {
+    margin-bottom: 100px;
+  }
 }

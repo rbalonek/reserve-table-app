@@ -13,13 +13,7 @@ export default function Home(props) {
   };
 
   return (
-    <div
-      style={{
-        textAlign: "center",
-        // backgroundColor: "grey",
-        minHeight: "100vh",
-      }}
-    >
+    <div className="home__container">
       {props.tablesWithGuests.length ? (
         <>
           <div>

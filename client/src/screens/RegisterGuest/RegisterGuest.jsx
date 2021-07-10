@@ -170,7 +170,7 @@ export default function RegisterGuest(props) {
           ))}
         </TextField>
         <div style={{ position: "relative", top: "10px" }}>
-          <Button variant="contained" color="primary">
+          <Button type="submit" variant="contained" color="primary">
             Submit
           </Button>
         </div>
