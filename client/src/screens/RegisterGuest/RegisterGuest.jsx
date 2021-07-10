@@ -4,9 +4,23 @@ import { useParams, useHistory } from "react-router-dom";
 
 import { getAllSeatsAtTable } from "../../services/seats.js";
 
-export default function RegisterGuest(props) {
-  const { id } = useParams();
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import MenuItem from "@material-ui/core/MenuItem";
+import Button from "@material-ui/core/Button";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+      width: "25ch",
+    },
+  },
+}));
+
+export default function RegisterGuest(props) {
+  const classes = useStyles();
+  const { id } = useParams();
   let history = useHistory();
 
   const [formData, setFormData] = useState({
@@ -32,6 +46,8 @@ export default function RegisterGuest(props) {
   };
 
   const [seats, setSeats] = useState([]);
+
+  // console.log(seats[0].table.table_number);
 
   let seatsForTable = [];
   let takenSeats = [];
@@ -69,8 +85,25 @@ export default function RegisterGuest(props) {
 
   return (
     <div className="register-guest__container">
+      <div
+        style={
+          {
+            // display: "flex",
+            // justifyContent: "space-around",
+            // marginBottom: "10px",
+          }
+        }
+      >
+        <Button variant="contained" color="secondary" onClick={goBack}>
+          BACK
+        </Button>
+      </div>
+
       <form
-        className="add-guest__form"
+        className="add-guest__form "
+        // className={classes.root}
+        noValidate
+        autoComplete="off"
         onSubmit={(e) => {
           e.preventDefault();
           props.createSubmit(formData);
@@ -78,68 +111,68 @@ export default function RegisterGuest(props) {
           window.location.reload();
         }}
       >
-        <h1>Register</h1>
+        {seats.length && (
+          <h1 className="table__number">Table {seats[0].table.table_number}</h1>
+        )}
+        <TextField
+          value={name}
+          onChange={handleChange}
+          type="text"
+          id="standard-basic"
+          label="Name"
+          variant="outlined"
+          name="name"
+        />
 
-        <label>
-          name:
-          <input type="text" name="name" value={name} onChange={handleChange} />
-        </label>
+        <TextField
+          type="text"
+          value={email}
+          onChange={handleChange}
+          id="filled-basic"
+          label="Email"
+          // variant="filled"
+          variant="outlined"
+          name="email"
+        />
 
-        <label>
-          email:
-          <input
-            type="text"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label>
-
-        <label>
-          phone:
-          <input
-            type="text"
-            name="phone"
-            value={phone}
-            onChange={handleChange}
-          />
-        </label>
+        <TextField
+          id="outlined-basic"
+          label="Phone"
+          variant="outlined"
+          type="text"
+          value={phone}
+          onChange={handleChange}
+          name="phone"
+        />
 
         <label>Seat: </label>
-        <select
-          // className="add-student__sensei-dropdown"
+
+        <TextField
+          id="standard-select-currency"
+          select
+          label="Select"
           name="seat_id"
           type="number"
           value={seat_id}
           onChange={handleChange}
+          // helperText="Please select your currency"
         >
-          <option selected="selected">--</option>
-
           {SeatsAvailable.map((seat) => (
-            <>
-              <option
-                onChange={handleChange}
-                name="seat_id"
-                value={seat}
-                type="number"
-              >
-                {seat}
-              </option>
-            </>
+            <MenuItem
+              onChange={handleChange}
+              name="seat_id"
+              value={seat}
+              type="number"
+              key={seat}
+            >
+              {seat}
+            </MenuItem>
           ))}
-        </select>
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            marginBottom: "50px",
-          }}
-        >
-          <button className="btn secondary" onClick={goBack}>
-            BACK
-          </button>
-          <button className="btn primary">Submit</button>
+        </TextField>
+        <div style={{ position: "relative", top: "10px" }}>
+          <Button type="submit" variant="contained" color="primary">
+            Submit
+          </Button>
         </div>
       </form>
     </div>

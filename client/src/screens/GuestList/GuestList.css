@@ -1,3 +1,10 @@
+.guest-list__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
 .list-table__container {
   margin-bottom: 100px;
+  text-align: center;
 }
