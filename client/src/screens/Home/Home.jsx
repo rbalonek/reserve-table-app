@@ -2,6 +2,9 @@ import React from "react";
 import "./Home.css";
 import { useHistory } from "react-router-dom";
 
+import { Button } from "@material-ui/core";
+import SimpleCard from "../../components/SimpleCard/SimpleCard";
+
 export default function Home(props) {
   let history = useHistory();
 
@@ -10,47 +13,41 @@ export default function Home(props) {
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <h1>Reserve a Table App</h1>
-
+    <div
+      style={{
+        textAlign: "center",
+        // backgroundColor: "grey",
+        minHeight: "100vh",
+      }}
+    >
       {props.tablesWithGuests.length ? (
         <>
           <div>
-            <button className="guest-list-button" onClick={goToGuestList}>
+            <Button
+              variant="contained"
+              color="primary"
+              // className="guest-list-button"
+              onClick={goToGuestList}
+            >
               Guest List Info
-            </button>
+            </Button>
           </div>
-
-          <div className="home__table-holder">
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "space-around",
+              position: "relative",
+              // top: "50px",
+            }}
+          >
             {props.tablesWithGuests.map((table) => (
-              <div className="table__container">
-                <h1>Table: {table.table_number}</h1>
-                <p>
-                  Seats Left:{" "}
-                  <span style={{ color: "red" }}>
-                    {table.seat_count - table.guests.length}
-                  </span>{" "}
-                </p>
-
-                {table.guests.map((guest) => (
-                  <>
-                    <p>{guest.name}</p>
-                  </>
-                ))}
-
-                {table.guests.length < table.seat_count ? (
-                  <button
-                    onClick={() =>
-                      history.push(`/register/${table.table_number}`)
-                    }
-                    className="register__btn"
-                  >
-                    Register
-                  </button>
-                ) : (
-                  <p className="register__full">Table is full</p>
-                )}
-              </div>
+              <SimpleCard
+                table={table}
+                tables={props.tables}
+                tablesWithGuests={props.tablesWithGuests}
+                guests={props.guests}
+              />
             ))}
           </div>
         </>

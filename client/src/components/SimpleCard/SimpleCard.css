@@ -1,0 +1,5 @@
+.MuiCardActions-root {
+  display: flex;
+  padding: 8px;
+  justify-content: space-between;
+}
